@@ -29,7 +29,7 @@ def test_get_config_policy():
     assert len(policy) == 1
     assert len(policy["diamond"].rules) == 2
     assert policy["diamond"].rules["config"].required is True
-    assert policy["diamond"].rules["collectors_path"].required is True
+    assert policy["diamond"].rules["collectors_path"].required is False
 
 
 def test_update_catalog():

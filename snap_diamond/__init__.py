@@ -189,6 +189,7 @@ class DiamondCollector(snap.Collector):
                 diamond_collector_cfg = diamond_cfg["collectors"]
                 for collector_name in diamond_collector_cfg:
                     snap.LOG.debug("Found '%s' plugin configuration", collector_name)
+                    snap.LOG.warning(config["collectors_path"])
                     module_name = collector_name.replace("Collector", "").lower()
                     # update path
                     sys.path.append("{}/{}".format(config["collectors_path"], module_name))
@@ -212,9 +213,6 @@ class DiamondCollector(snap.Collector):
             snap.LOG.warning("No 'diamond' configuration provided.")
         self._is_initialized = True
 
-
-if __name__ == "__main__":
-    dia = DiamondCollector("diamond", 1, exclusive=True,
-                           routing_strategy=snap.plugin.RoutingStrategy.sticky,
-                           concurrency_count=1)
-    dia.start_plugin()
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
