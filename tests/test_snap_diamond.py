@@ -37,9 +37,7 @@ def test_update_catalog():
     # When the diamond pypi package is installed the collectors are placed
     # in the share dir.
     cfg = snap.ConfigMap(config='''{"collectors":{"CPUCollector": {}}}''',
-                         collectors_path=os.path.dirname(
-                             os.path.dirname(
-                                 sys.executable))+"/share/diamond/collectors")
+                         collectors_path="/usr/share/diamond/collectors")
     metrics = dia.update_catalog(cfg)
     assert len(metrics) > 5
 
@@ -47,9 +45,7 @@ def test_update_catalog():
 def test_collect():
     dia = DiamondCollector("diamond", 1)
     cfg = snap.ConfigMap(config='''{"collectors":{"CPUCollector": {}}}''',
-                         collectors_path=os.path.dirname(
-                             os.path.dirname(
-                                 sys.executable))+"/share/diamond/collectors")
+                         collectors_path="/usr/share/diamond/collectors")
     metrics_to_collect = dia.update_catalog(cfg)
     metrics_collected = dia.collect(metrics_to_collect)
     assert len(metrics_collected) == len(metrics_to_collect)

@@ -172,17 +172,12 @@ class DiamondCollector(snap.Collector):
                 ("diamond"),
                 [
                     ("config", snap.StringRule(required=True)),
-                    ("collectors_path", snap.StringRule())
+                    ("collectors_path", snap.StringRule(default="/usr/share/diamond/collectors"))
                 ]
             ]
         )
 
     def _init(self, config):
-        if "collectors_path" not in config:
-            # If we were not provided the collectors path we set it to the most
-            # likely location
-            config["collectors_path"] = os.path.dirname(
-                os.path.dirname(sys.executable))+"/share/diamond/collectors"
         if "config" in config:
             diamond_cfg = json.loads(config["config"])
             if "collectors" in diamond_cfg:
