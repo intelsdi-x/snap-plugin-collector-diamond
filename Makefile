@@ -19,7 +19,7 @@ pkg:
 	$(MAKE) clean
 	bash -c "./scripts/pkg.sh"
 test:
-	py.test --cov=snap_diamond snap_diamond/tests
+	py.test --cov=snap_diamond tests
 clean:
 	rm -rf dist .venv *.egg-info build .acbuild
 	find . -name '*.pyc' -exec rm --force {} \;
