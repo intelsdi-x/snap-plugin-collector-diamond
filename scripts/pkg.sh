@@ -27,7 +27,6 @@ __acbuild_ver="v0.4.0"
 
 . "${__dir}/common.sh"
 
-make_aci_package () {
 PLUGIN_DIR=$1
 PLUGIN_NAME=$2
 
@@ -87,6 +86,3 @@ acbuild end
 _info "removing: ${__proj_dir}/acbuild-${__acbuild_ver}"
 rm -rf ${__proj_dir}/dist/acbuild-${__acbuild_ver}
 _info "ACI package build finished"
-}
-
-make_aci_package snap_diamond snap-plugin-collector-diamond

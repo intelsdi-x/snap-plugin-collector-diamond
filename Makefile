@@ -17,7 +17,7 @@
 
 pkg:
 	$(MAKE) clean
-	bash -c "./scripts/pkg.sh"
+	bash -c "./scripts/pkg.sh snap_diamond snap-plugin-collector-diamond"
 test:
 	py.test --cov=snap_diamond tests
 clean:
