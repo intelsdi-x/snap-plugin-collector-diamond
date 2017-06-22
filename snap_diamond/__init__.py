@@ -172,23 +172,19 @@ class DiamondCollector(snap.Collector):
                 ("diamond"),
                 [
                     ("config", snap.StringRule(required=True)),
-                    ("collectors_path", snap.StringRule())
+                    ("collectors_path", snap.StringRule(default="/usr/share/diamond/collectors"))
                 ]
             ]
         )
 
     def _init(self, config):
-        if "collectors_path" not in config:
-            # If we were not provided the collectors path we set it to the most
-            # likely location
-            config["collectors_path"] = os.path.dirname(
-                os.path.dirname(sys.executable))+"/share/diamond/collectors"
         if "config" in config:
             diamond_cfg = json.loads(config["config"])
             if "collectors" in diamond_cfg:
                 diamond_collector_cfg = diamond_cfg["collectors"]
                 for collector_name in diamond_collector_cfg:
                     snap.LOG.debug("Found '%s' plugin configuration", collector_name)
+                    snap.LOG.warning(config["collectors_path"])
                     module_name = collector_name.replace("Collector", "").lower()
                     # update path
                     sys.path.append("{}/{}".format(config["collectors_path"], module_name))
@@ -212,9 +208,6 @@ class DiamondCollector(snap.Collector):
             snap.LOG.warning("No 'diamond' configuration provided.")
         self._is_initialized = True
 
-
-if __name__ == "__main__":
-    dia = DiamondCollector("diamond", 1, exclusive=True,
-                           routing_strategy=snap.plugin.RoutingStrategy.sticky,
-                           concurrency_count=1)
-    dia.start_plugin()
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions

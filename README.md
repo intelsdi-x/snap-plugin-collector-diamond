@@ -36,32 +36,17 @@ You can get the pre-built plugin package for Linux (x86-64) [here](http://snap.c
 
 You will need to be on Linux with Python 2.7 or Python3 and a virtualenv activated.
 
-I use and recommend using [pyenv](https://github.com/yyuu/pyenv) to manage my
-Python version and environments.  Checkout
-[pyenv-installer](https://github.com/yyuu/pyenv-installer) for an
-easy installation that includes pyenv-virtualenv.  The directions below assume
-that you have installed pyenv with pyenv-virtualenv.
+To build package with virtual environment included you will need [pyenv](https://github.com/pyenv/pyenv) installed on your system.
 
 Run the following commands from the root of the repository.
-
-Download Python:
-`pyenv install 2.7.12`
-
-Create a virtualenv:
-`pyenv virtualenv --always-copy --python=/usr/bin/python2.7 2.7.12 diamond27`
-
-Activate the virtualenv:
-`pyenv local diamond27`
-
-Make the virtualenv relocatable:
-`pip install virtualenv`
-`virtualenv --relocatable $VIRTUAL_ENV`
 
 Install the Python deps:
 `pip install -r requirements.txt`
 
 Create the plugin package:
 `scripts/pkg.sh`
+
+Package will be available under "dist" folder.
 
 ### Example
 
