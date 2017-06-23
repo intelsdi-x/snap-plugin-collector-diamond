@@ -184,7 +184,6 @@ class DiamondCollector(snap.Collector):
                 diamond_collector_cfg = diamond_cfg["collectors"]
                 for collector_name in diamond_collector_cfg:
                     snap.LOG.debug("Found '%s' plugin configuration", collector_name)
-                    snap.LOG.warning(config["collectors_path"])
                     module_name = collector_name.replace("Collector", "").lower()
                     # update path
                     sys.path.append("{}/{}".format(config["collectors_path"], module_name))

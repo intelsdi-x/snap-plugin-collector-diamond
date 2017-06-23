@@ -3,6 +3,8 @@ sudo: required
 dist: trusty
 python:
   - "2.7"
+before_install:
+  - sudo ln -s $TRAVIS_BUILD_DIR/.tox/py27/share/diamond /usr/share/diamond
 install:
   - "pip install tox-travis"
   - "pip install setuptools-markdown"

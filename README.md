@@ -24,7 +24,9 @@ consumed by [Snap](http://github.com/intelsdi-x/snap).
 * Linux
 * Required if building the the plugin package
   * [acbuild](https://github.com/containers/build) required for create a package
-  * virtualenv or pyenv (see: [virtualenv primer](https://realpython.com/blog/python/python-virtual-environments-a-primer/))
+  * [pyenv](https://github.com/pyenv/pyenv)
+* Required for testing plugin
+  * [tox](https://tox.readthedocs.io/en/latest/) (install using `pip install tox`)
 
 ### Installation
 
@@ -38,15 +40,7 @@ You will need to be on Linux with Python 2.7 or Python3 and a virtualenv activat
 
 To build package with virtual environment included you will need [pyenv](https://github.com/pyenv/pyenv) installed on your system.
 
-Run the following commands from the root of the repository.
-
-Install the Python deps:
-`pip install -r requirements.txt`
-
-Create the plugin package:
-`scripts/pkg.sh`
-
-Package will be available under "dist" folder.
+Just run the `make pkg` command to build ACI package. Package file will be available under "dist" folder.
 
 ### Example
 
