@@ -42,6 +42,8 @@ To build package with virtual environment included you will need [pyenv](https:/
 
 Just run the `make pkg` command to build ACI package. Package file will be available under "dist" folder.
 
+NOTE: If you got Snap error "received metric with bad version" during development (after adding some commits), run "git tag -af <YOUR_VERSION> -m <VERSION_INFO>" or just "git tag -f <YOUR_VERSION>" to update version tag, and rebuild package. Plugin version is gathered from git tags.
+
 ### Example
 
 #### Start snapteld
