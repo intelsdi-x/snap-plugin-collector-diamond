@@ -78,7 +78,7 @@ acbuild set-name ${PLUGIN_NAME}
 _info "packaging: copying python virtual environment"
 acbuild copy $PYTHON_ENV .venv
 _info "packaging: setting plugin startup command"
-acbuild set-exec ./.venv/bin/${PLUGIN_NAME}
+acbuild set-exec ./.venv/bin/python ./.venv/bin/${PLUGIN_NAME}
 _info "packaging: writing ${__proj_dir}/dist/${PLUGIN_NAME}/linux/${HOSTTYPE}/${PLUGIN_NAME}-linux-${HOSTTYPE}.aci"
 mkdir -p "${__proj_dir}/dist/${PLUGIN_NAME}/linux/${HOSTTYPE}"
 acbuild write ${__proj_dir}/dist/${PLUGIN_NAME}/linux/${HOSTTYPE}/${PLUGIN_NAME}-linux-${HOSTTYPE}.aci
