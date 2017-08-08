@@ -16,8 +16,6 @@
 # limitations under the License.
 
 import snap_plugin.v1 as snap
-import sys
-import os
 import time
 from snap_diamond import DiamondCollector
 

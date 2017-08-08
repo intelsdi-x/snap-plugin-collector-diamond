@@ -20,9 +20,9 @@
 import re
 
 import snap_plugin.v1 as snap
-from pkg_resources import get_distribution
+from pkg_resources import get_distribution, DistributionNotFound
 
-import snap_diamond
+from snap_diamond import __version__, DiamondCollector
 
 PACKAGE_NAME = "snap-plugin-collector-diamond"
 
@@ -34,16 +34,22 @@ def get_plugin_version(name):
     :param name: The name of package
     :return: Major version number
     """
-    _ver = re.search('^(\d+).*$', get_distribution(name).version)
+
+    try:
+        _pkg_ver = get_distribution(name).version
+    except DistributionNotFound:
+        _pkg_ver = __version__
+
+    _ver = re.search('^(\d+).*$', _pkg_ver)
     if _ver and len(_ver.groups()) > 0:
         return int(_ver.groups()[0])
     return 1
 
 
 def run():
-    snap_diamond.DiamondCollector("diamond", get_plugin_version(PACKAGE_NAME), exclusive=True,
-                                  routing_strategy=snap.plugin.RoutingStrategy.sticky,
-                                  concurrency_count=1).start_plugin()
+    DiamondCollector("diamond", get_plugin_version(PACKAGE_NAME), exclusive=True,
+                     routing_strategy=snap.plugin.RoutingStrategy.sticky,
+                     concurrency_count=1).start_plugin()
 
 
 if __name__ == "__main__":

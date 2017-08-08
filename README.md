@@ -20,7 +20,7 @@ consumed by [Snap](http://github.com/intelsdi-x/snap).
 
 ### System requirements
 
-* Python2 (>=2.7) or Python3
+* Python2 (>=2.7)
 * Linux
 * Required if building the the plugin package
   * [acbuild](https://github.com/containers/build) required for create a package
