@@ -7,13 +7,12 @@ before_install:
   - sudo ln -s $TRAVIS_BUILD_DIR/.tox/py27/share/diamond /usr/share/diamond
 install:
   - "pip install tox-travis"
-  - "pip install setuptools-markdown"
 script: make test
 before_deploy:
   - make pkg
 deploy:
   - provider: s3
-    access_key_id: $AWS_KEY_ID
+    access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: snap.ci.snap-telemetry.io
     region: us-west-2
@@ -22,7 +21,7 @@ deploy:
     upload-dir: plugins
     acl: public_read
     on:
-      repo: intelsdi-x/snap-plugin-collector-pysmart
+      repo: intelsdi-x/snap-plugin-collector-diamond
       tags: true
   - provider: pypi
     distributions: sdist bdist_wheel
@@ -31,7 +30,7 @@ deploy:
     password: $PYPI_PASSWORD
     on:
       tags: true
-      repo: intelsdi-x/snap-plugin-collector-pysmart
+      repo: intelsdi-x/snap-plugin-collector-diamond
   - provider: releases
     api_key: $GITHUB_API_KEY
     file:

@@ -18,21 +18,26 @@
 from setuptools import setup, find_packages
 import versioneer
 
+
+def readme():
+    with open('README.rst') as f:
+        return f.read()
+
 setup(
     name="snap-plugin-collector-diamond",
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
-    install_requires=['snap-plugin-lib-py>=1.0.10,<2', 'diamond>=4.0.515', 'configobj>=5.0.6', 'psutil>=5.0.0'],
+    install_requires=['snap-plugin-lib-py>=1.0.10,<2', 'diamond>=4.0.515', 'psutil>=5.0.0'],
     author="Joel Cooklin",
     author_email="joel.cooklin@gmail.com",
-    description="This snap plugin wraps Diamond plugins so they can be easily consumed by Snap.",
-    entry_points = {
+    description="This is a plugin for the Snap telemetry framework wrapping Diamond daemon plugins.",
+    entry_points={
         'console_scripts': [
             'snap-plugin-collector-diamond=snap_diamond.plugin:run'
         ]
     },
-    long_description_markdown_filename="README.md",
+    long_description=readme(),
     license="Apache 2.0",
     keywords="snap telemetry plugin plugins metrics diamond",
     url="http://github.com/intelsdi-x/snap-plugin-collector-diamond"

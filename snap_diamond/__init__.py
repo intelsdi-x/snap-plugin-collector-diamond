@@ -117,7 +117,7 @@ class DiamondCollector(snap.Collector):
                 instance.
             3c. The plugin_instance is stored saved for future use.
 
-        On update_catallog:
+        On update_catalog:
             After initialization we loop over the enabled diamond plugins
             calling collect.  The SnapHandler is automatically called for every
             collect call which transforms the metrics into snap.Metric.  After
